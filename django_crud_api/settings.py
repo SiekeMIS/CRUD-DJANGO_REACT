@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders', 
     'rest_framework',
+    # 'coreapi',
     'cachorros',
 ]
 
@@ -128,3 +129,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #cors autjorization
 CORS_ALLOWED_ORIGINS = [
 ]
+
+REST_FRAMEWORK = {
+    'DEEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+}
