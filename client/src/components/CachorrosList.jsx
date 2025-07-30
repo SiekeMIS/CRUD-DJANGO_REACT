@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import {getallCachorros} from "../api/cachorros.api";
+import {getAllCachorros} from "../api/cachorros.api";
 import { CachorroCard } from "./CachorrosCard";
 
 export function CachorrosList() {
@@ -8,7 +8,7 @@ export function CachorrosList() {
     useEffect(() => {
         
         async function loadCachorros() {
-            const res = await getallCachorros();
+            const res = await getAllCachorros();
             setCachorros(res.data);
         }
         loadCachorros();
