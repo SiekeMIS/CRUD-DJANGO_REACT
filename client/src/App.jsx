@@ -11,6 +11,7 @@ function App() {
         <Route path="/" element={<Navigate to="/cachorros" />} />
         <Route path="/cachorros" element={<CachorrosPages />} />
         <Route path="/cachorros-create" element={<CachorrosFormPage />} />
+        <Route path="/cachorros/:id" element={<CachorrosFormPage />} />
       </Routes>
     </BrowserRouter>
   );

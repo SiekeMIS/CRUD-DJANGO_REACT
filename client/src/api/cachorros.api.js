@@ -9,3 +9,4 @@ const cachorrosApi = axios.create({
 
 export const getAllCachorros = () => cachorrosApi.get('/');
 export const createCachorro = (cachorro) => cachorrosApi.post('/', cachorro);
+export const deleteCachorro = (id) => cachorrosApi.delete(`/${id}/`);

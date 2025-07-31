@@ -6,7 +6,7 @@ export function Navigation() {
             <Link to="/cachorros">
                 <h1>aplicacion de cachorros</h1>
             </Link>
-            <Link to="/cachorros-create">Cachorros</Link>
+            <Link to="/cachorros-create">Crear Un Cachorros</Link>
         </div>
     );
 }

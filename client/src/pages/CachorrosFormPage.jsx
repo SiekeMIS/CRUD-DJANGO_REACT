@@ -1,6 +1,6 @@
 import {useForm} from 'react-hook-form';
-import { createCachorro } from '../api/cachorros.api';
-import { useNavigate } from 'react-router-dom';
+import { createCachorro, deleteCachorro } from '../api/cachorros.api';
+import { useNavigate, useParams} from 'react-router-dom';
 
 export function CachorrosFormPage() {
     const {register, 
@@ -9,6 +9,8 @@ export function CachorrosFormPage() {
         } = useForm();
     
     const navigate = useNavigate();
+    const params = useParams();
+    console.log(params);
 
     const onSubmit = handleSubmit(async (data) => {
         try {
@@ -39,8 +41,23 @@ export function CachorrosFormPage() {
             {errors.nombre && <span>Este campo es obligatorio</span>}
             <textarea rows="3" placeholder="Descripción" {...register("descripcion")}></textarea>
             {errors.descripcion && <span>Este campo es obligatorio</span>}
-            <button>Save</button>
+            <button type="submit">save</button>
         </form>
+
+        {params.id && (
+            <button
+                onClick={async () => {
+                 const accepted = window.confirm('¿Estás seguro de que quieres eliminar este cachorro?');
+                 if (accepted) {
+                     await deleteCachorro(params.id);
+                     navigate('/cachorros');
+                 }
+        }}
+        >
+            Delete
+            </button>
+        )}
+
         </div>
     );
 }
