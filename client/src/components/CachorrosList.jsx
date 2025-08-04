@@ -17,7 +17,7 @@ export function CachorrosList() {
         // Fetch cachorros data from API
     }, []);
 
-    return <div>
+    return <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {cachorros.map(cachorros => (
             <CachorroCard key={cachorros.id} cachorros={cachorros} />
         ))}

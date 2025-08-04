@@ -2,6 +2,7 @@ import {useEffect} from 'react';
 import {useForm} from 'react-hook-form';
 import { createCachorro, deleteCachorro, updateCachorro, getCachorroById } from '../api/cachorros.api';
 import { useNavigate, useParams} from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 
 export function CachorrosFormPage() {
     const {register, 
@@ -29,11 +30,27 @@ export function CachorrosFormPage() {
                 console.log('Actualizando cachorro con ID:', params.id);
                 const res = await updateCachorro(params.id, mappedData);
                 console.log('Cachorro actualizado:', res);
+                toast.success('Cachorro actualizado exitosamente', {
+                    duration: 2000,
+                    position: 'top-right',
+                    style: {
+                        background: '#4caf50',
+                        color: '#fff',
+                    },
+                });
             } else {
                 // Modo creación
                 console.log('Creando nuevo cachorro');
                 const res = await createCachorro(mappedData);
                 console.log('Cachorro creado:', res);
+                toast.success('Cachorro creado exitosamente', {
+                    duration: 2000,
+                    position: 'top-right',
+                    style: {
+                        background: '#4caf50',
+                        color: '#fff',
+                    },
+                });
             }
             
             // Navegar después de la operación exitosa
@@ -66,14 +83,15 @@ export function CachorrosFormPage() {
     }, [params.id, setValue]); // ✅ Agregar dependencias
 
     return (
-        <div>
-            <h1>{params.id ? 'Editar Cachorro' : 'Crear Cachorro'}</h1>
-            
+        <div className='max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md'>
+            <h1 className='text-xl font-semibold mb-4'>{params.id ? 'Editar Cachorro' : 'Crear Cachorro'}</h1>
+
             <form onSubmit={onSubmit}>
                 <input 
                     type="text" 
                     placeholder="Nombre del cachorro" 
-                    {...register("nombre", {required: true})} 
+                    {...register("nombre", {required: true})}
+                    className='border p-2 rounded-lg w-full mb-4 w-full mb-2' 
                 />
                 {errors.nombre && <span>Este campo es obligatorio</span>}
                 
@@ -94,8 +112,8 @@ export function CachorrosFormPage() {
                         Adoptado
                     </label>
                 )}
-                
-                <button type="submit">
+
+                <button className='bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg' type="submit">
                     {params.id ? 'Actualizar' : 'Crear'}
                 </button>
             </form>
@@ -107,6 +125,14 @@ export function CachorrosFormPage() {
                         if (accepted) {
                             try {
                                 await deleteCachorro(params.id);
+                                toast.success('Cachorro eliminado exitosamente', {
+                                    duration: 2000,
+                                    position: 'top-right',
+                                    style: {
+                                        background: '#4caf50',
+                                        color: '#fff',
+                                    },
+                                });
                                 navigate('/cachorros');
                             } catch (error) {
                                 console.error('Error al eliminar:', error);
