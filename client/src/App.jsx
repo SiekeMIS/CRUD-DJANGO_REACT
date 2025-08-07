@@ -7,23 +7,23 @@ import { Toaster } from 'react-hot-toast';
 function App() {
   return (
     <BrowserRouter>
-      {/* Contenedor principal centrado */}
-      <div className="min-h-screen bg-gray-50">
-        <div className="container mx-auto px-4 py-8">
-          {/* Contenido centrado */}
-          <div className="flex flex-col items-center">
-            <Navigation />
-            
-            <main className="w-full mt-8">
-              <Routes>
-                <Route path="/" element={<Navigate to="/cachorros" />} />
-                <Route path="/cachorros" element={<CachorrosPages />} />
-                <Route path="/cachorros-create" element={<CachorrosFormPage />} />
-                <Route path="/cachorros/:id" element={<CachorrosFormPage />} />
-              </Routes>
-            </main>
-          </div>
+      {/* Contenedor principal que ocupa toda la pantalla */}
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50">
+        {/* Contenedor centrado con ancho máximo y padding responsivo */}
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <Navigation />
+          
+          {/* Tarjeta contenedora del contenido principal */}
+          <main className="w-full bg-white rounded-xl shadow-lg p-6 mt-8">
+            <Routes>
+              <Route path="/" element={<Navigate to="/cachorros" />} />
+              <Route path="/cachorros" element={<CachorrosPages />} />
+              <Route path="/cachorros-create" element={<CachorrosFormPage />} />
+              <Route path="/cachorros/:id" element={<CachorrosFormPage />} />
+            </Routes>
+          </main>
         </div>
+        
         <Toaster position="bottom-center" />
       </div>
     </BrowserRouter>
